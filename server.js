@@ -1,0 +1,8 @@
+import express from "express";
+import router from "./routes/index.js";
+const app = express();
+app.use("/api", router);
+
+// run with: node server.js
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`On ${PORT}`));
