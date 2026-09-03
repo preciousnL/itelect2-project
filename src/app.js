@@ -1,4 +1,5 @@
 // app.js - Main application entry point
+// midterms oral defense
 console.log('Server starting...');
 
 import {formatDate, validateTask, mergeTaskUpdate, createTask, } from "./utils.js";
