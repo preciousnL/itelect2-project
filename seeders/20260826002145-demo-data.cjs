@@ -1,17 +1,17 @@
 'use strict';
+const bcrypt = require('bcryptjs');
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
     const now = new Date();
+    const admin = await bcrypt.hash('admin123', 10);
+    const member = await bcrypt.hash('member123', 10);
     
     await queryInterface.bulkInsert('Users', [
-      { name: 'Precious Nicole', email: 'pn@email.test',
-        createdAt: now, updatedAt: now },
-      { name: 'Umiko Myron', email: 'um@email.test',
-        createdAt: now, updatedAt: now },
-      { name: 'Paul Geneo', email: 'pg@email.test',
-        createdAt: now, updatedAt: now }
+      { name: 'Nicole', email: 'n@email.test', password: admin, role: 'admin', createdAt: now, updatedAt: now },
+      { name: 'Myron', email: 'm@email.test', password: member, role: 'member', createdAt: now, updatedAt: now },
+      { name: 'Geneo', email: 'g@email.test', password: member, role: 'member', createdAt: now, updatedAt: now }
     ]);
 
     const Users = await queryInterface.sequelize.query(
@@ -22,19 +22,14 @@ module.exports = {
     const idOf = (name) => Users.find((a) => a.name === name).id;
 
     await queryInterface.bulkInsert('Tasks', [
-      { title: 'Graded Task 1', dueDate: new Date(), userId: idOf('Precious Nicole'), createdAt: now, updatedAt: now, completed: false },
-      { title: 'Graded Task 2', dueDate: new Date(), userId: idOf('Precious Nicole'), createdAt: now, updatedAt: now, completed: false },
-      { title: 'Graded Task 3', dueDate: new Date(), userId: idOf('Umiko Myron'), createdAt: now, updatedAt: now, completed: false },
-      { title: 'Graded Task 4', dueDate: new Date(), userId: idOf('Paul Geneo'), createdAt: now, updatedAt: now, completed: false }
+      { title: 'Graded Task 1: Updated', dueDate: new Date(), userId: idOf('Nicole'), createdAt: now, updatedAt: now, completed: false },
+      { title: 'Graded Task 2: Updated', dueDate: new Date(), userId: idOf('Nicole'), createdAt: now, updatedAt: now, completed: false },
+      { title: 'Graded Task 3: Updated', dueDate: new Date(), userId: idOf('Myron'), createdAt: now, updatedAt: now, completed: false },
+      { title: 'Graded Task 4: Updated', dueDate: new Date(), userId: idOf('Geneo'), createdAt: now, updatedAt: now, completed: false }
       ]);
   },
 
   async down (queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
+    await queryInterface.bulkDelete('Users', null, {});
   }
 };
