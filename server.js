@@ -1,6 +1,8 @@
 import express from "express";
 import cors from "cors";
 import morgan from "morgan";
+import db from "./models/index.cjs";
+
 import authRoutes from "./routes/auth.js";
 import taskRoutes from "./routes/tasks.js";
 import userRoutes from "./routes/users.js";
