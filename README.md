@@ -7,6 +7,12 @@ My IT Elective 2 backend web development project.
 **GT4:** AsyncJS Error Handling<br>
 **GT5:** Node Express<br>
 **GT6:** Rest API
+**GT7:** PosthresSequelize
+**GT8:** Relationship Queries
+**GT9:** JWT Login & Signup
+**GT10:** Authorization and Security
+**GT11:** MVC
+**GT12:** Deployment 
 
 ## **API Testing**
 Graded Task 6: Rest API (Testing)
@@ -87,3 +93,12 @@ Delete with an existing id returns 200.
 
 ![](screenshots/delete-error-gt8.png)
 Delete on the same id returns 404.
+
+---
+
+## **Render Deployment**
+Graded Task 12: Deployment
+
+### Live URL
+
+https://itelect2-demo-library-osc8.onrender.com/
